@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- remove product info details -->
+        <referenceBlock name="product.info.details" remove="true"/>
+
+        <!-- move upsell to product info main -->
+        <move element="product.info.upsell" destination="product.info.main"/>
+
+        <!-- Add product attributes block and move it to the right position -->
+        <referenceContainer name="content" >
+            <block class="Magento\Catalog\Block\Product\View" name="magebit.learning.product.attributes" template="Magento_Catalog::product/view/attributes.phtml">
+                <arguments>
+                    <argument name="enhancedProductAttributeDisplay" xsi:type="object">
+                        Magebit\EnhancedProductAttributeDisplay\Block\Product\EnhancedProductAttributeDisplay
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <move element="magebit.learning.product.attributes" destination="product.info.main" after="product.info.price"/>
+
+        <!-- Override add to cart template for simple product and add knockoutJs element -->
+        <referenceBlock name="product.info.addtocart" template="Magento_Catalog::product/view/addtocart.phtml">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="qty-counter" xsi:type="array">
+                            <item name="component" xsi:type="string">Magento_Catalog/js/qty-counter</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Remove add to block -->
+        <referenceBlock name="product.info.addto" remove="true" />
+
+        <!-- Remove product info overview block-->
+        <referenceBlock name="product.info.overview" remove="true" />
+    </body>
+</page>

@@ -1,0 +1,20 @@
+<div class="magebit-qty-container">
+    <span>
+        <button class="magebit-qty-input-button" data-bind="click:decreaseQty">
+            <span>-</span>
+        </button>
+    </span>
+    <input class="magebit-qty-input"
+           data-bind="textInput: qty , event: {input: validate(qty)}"
+           type="number"
+           name="qty"
+           id="qty"
+           maxlength="3"
+    />
+    <span>
+        <button class="magebit-qty-input-button" data-bind="click:increaseQty">
+            <span>+</span>
+        </button>
+    </span>
+</div>
+<div style="color: red;" data-bind="text: error"></div>

@@ -1,0 +1,23 @@
+<?php
+use Magento\Catalog\Block\Product\View;
+/**
+ * @var View $block
+ */
+
+$enhancedProductAttributeDisplay = $block->getData('enhancedProductAttributeDisplay');
+$product = $block->getProduct();
+$attributesToRender = $enhancedProductAttributeDisplay->getAttributesToRender($product);
+?>
+<div class="magebit-attributes-container">
+    <ul>
+        <?php foreach ($attributesToRender as $attributeName => $attributeValue): ?>
+            <li>
+                <b><?= $attributeName . ':' ?></b>
+                <?= $attributeValue ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <p class="magebit-product-short-description"><?= $product->getShortDescription(); ?></p>
+</div>
+
+
