@@ -20,12 +20,20 @@ class EnhancedProductAttributeDisplay implements ArgumentInterface
     /** @var Product $product */
     private $product;
 
+    /**
+     * @param Product $product
+     * @return array
+     */
     public function getAttributesToRender(Product $product): array
     {
         $this->product = $product;
+
         return $this->getProductAttributes();
     }
 
+    /**
+     * @return array
+     */
     private function getProductAttributes(): array
     {
         $attributesToRender = [];
@@ -60,6 +68,10 @@ class EnhancedProductAttributeDisplay implements ArgumentInterface
         return $attributesToRender;
     }
 
+
+    /**
+     * @param array|string $attributeText
+     */
     private function formatAttributeText($attributeText): string
     {
         return is_array($attributeText) ? implode(',', $attributeText) : $attributeText;
