@@ -14,13 +14,13 @@ $attributesToRender = $enhancedProductAttributeDisplay->getAttributesToRender($p
     <ul class="magebit-attribute-list">
         <?php foreach ($attributesToRender as $attributeName => $attributeValue): ?>
             <li class="magebit-attribute-list-item">
-                <b class="magebit-attribute-bold-title"><?= $attributeName . ':' ?></b>
-                <span class="magebit-attribute-value"><?= $attributeValue ?></span>
+                <b class="magebit-attribute-bold-title"><?= $block->escapeHtml($attributeName) . ':' ?></b>
+                <span class="magebit-attribute-value"><?= $block->escapeHtml($attributeValue) ?></span>
             </li>
         <?php endforeach; ?>
     </ul>
     <div class="magebit-product-short-description">
-        <?= $product->getShortDescription(); ?>
+        <?= $block->escapeHtml($product->getShortDescription()); ?>
     </div>
 </div>
 

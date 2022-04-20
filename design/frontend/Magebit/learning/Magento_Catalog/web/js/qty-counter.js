@@ -1,7 +1,8 @@
 define([
     'ko',
-    'uiElement'
-], function (ko, Element) {
+    'uiElement',
+    'mage/translate'
+], function (ko, Element, $_t) {
     "use strict";
     return Element.extend({
         defaults: {
@@ -26,7 +27,7 @@ define([
 
         validate: function () {
             if (this.qty() < 0) {
-                this.error("Item to add to cart should be bigger than one");
+                this.error($_t("Item to add to cart should be bigger than one"));
             } else {
                 this.error("");
             }
