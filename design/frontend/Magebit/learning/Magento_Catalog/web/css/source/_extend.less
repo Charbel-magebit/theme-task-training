@@ -1,60 +1,187 @@
-.magebit-qty-container {
-  display: flex;
-  align-items: center;
-}
-.magebit-in-stock-container {
-  margin-left: 10px;
-}
+.catalog-product-view {
 
-.magebit-product-short-description {
-  margin-left: 24px;
-}
+  //General settings
+  button {
+    box-shadow: none !important;
+    border: none !important;
+  }
 
-.magebit-full-width {
-  width: 100% !important;
-}
+  .magebit-full-width {
+    width: 100% !important;
+  }
 
-.magebit-display-flex {
-  display: flex;
-  align-items: center;
-}
+  .magebit-orange-color {
+    background: @color-orange-red1 !important;
+  }
 
-.magebit-orange-color {
-  background: @color-orange-red1 !important;
-}
+  .magebit-display-flex {
+    display: flex;
+    align-items: center;
+  }
 
-.magebit-add-to-cart {
-  width: 100%;
-  background: @color-orange-red1;
-  height: 52px;
-  opacity: 1;
-  color: @color-white;
-}
+  // custom classes
+  .magebit-qty-container {
+    display: flex;
+    align-items: center;
 
-.magebit-qty-input-button {
-  width: 52px;
-  height: 52px;
-  background: none;
-}
+    .magebit-qty-input-button {
+      width: 52px;
+      height: 52px;
+      background: #FFFFFF 0 0 no-repeat padding-box;
+      border: 1px solid #C2C2C2 !important;
+      border-radius: 2px 0 0 2px;
+      padding: 0;
+    }
 
-.magebit-qty-input {
-  height: 52px !important;
-  width: 86px !important;
-  text-align: center;
-}
+    .magebit-qty-input {
+      height: 52px !important;
+      width: 86px !important;
+      text-align: center;
+      padding: 0;
+      border-width: 1px 0;
+    }
 
-.magebit-upsell-height {
-  height: 400px;
-}
-.magebit-attributes-container {
-  background-color: #F9F9F9;
-  margin: 20px;
-}
+    .magebit-qty-input-plus {
+      color: #ff5501;
+    }
 
-.magebit-view-product-link {
-  background-color: @color-black_dark;
-  color: #FFFFFF;
-  width: 109px;
-  height: 32px;
-  font: normal normal 600 10px/19px Open Sans;
+    .magebit-in-stock-container {
+      margin-left: 10px;
+    }
+  }
+
+  .magebit-add-to-cart {
+    width: 100%;
+    background: @color-orange-red1;
+    height: 52px;
+    color: @color-white;
+  }
+
+  .magebit-attributes-container {
+    background: #F9F9F9 0 0 no-repeat padding-box;
+    height: 148px;
+
+    .magebit-product-short-description {
+      margin-left: 24px;
+    }
+
+    .magebit-attribute-list {
+      padding-top: 10px;
+      margin-bottom: 13px;
+
+      .magebit-attribute-list-item {
+        margin-bottom: 10px;
+      }
+
+      .magebit-attribute-bold-title {
+        text-align: left;
+        font: normal normal bold 14px/19px Open Sans;
+        letter-spacing: 0;
+        color: #333333;
+      }
+    }
+  }
+
+  .magebit-view-product-link {
+    color: #FFFFFF;
+    width: 109px;
+    height: 32px;
+    font: normal normal 600 10px/19px Open Sans;
+    letter-spacing: 0;
+    opacity: 1;
+    background: #333333 0 0 no-repeat padding-box;
+    border-radius: 2px;
+  }
+
+  // extending existing classes
+  .product-item-info {
+    width: 100%;
+
+    .tocart {
+      display: none;
+    }
+
+    &:hover {
+      .tocart {
+        display: block;
+      }
+    }
+
+    .product-item-link {
+      font: normal normal 600 16px/22px Open Sans;
+      letter-spacing: 0;
+      color: #333333;
+    }
+
+    .price {
+      font: normal normal 600 18px/24px Open Sans;
+      letter-spacing: 0;
+      color: #333333;
+      opacity: 1;
+    }
+  }
+
+  .product-info-main {
+    width: 42% !important;
+
+    .magebit-upsell-height {
+      height: 400px;
+    }
+
+    .product-info-price {
+      border: none;
+
+      .product-info-stock-sku {
+        display: flex;
+        padding: 7px 0 0 16px;
+      }
+
+    }
+
+    .base {
+      text-align: left;
+      font: normal normal 600 32px/43px Open Sans;
+      letter-spacing: 0;
+      color: #333333;
+    }
+
+    .action {
+      &.add {
+        font: normal normal 600 12px/17px Open Sans;
+        letter-spacing: 0;
+        color: #333333;
+        border: 1px solid #333333;
+        border-radius: 2px;
+        padding: 6px 10px 5px 10px;
+      }
+
+      &.view {
+        text-decoration: underline;
+        font: normal normal normal 12px/17px Open Sans;
+        letter-spacing: 0;
+        color: #FF5501;
+      }
+    }
+
+    #block-upsell-heading {
+      font: normal normal bold 16px/22px Open Sans;
+      letter-spacing: 0;
+      color: #333333;
+    }
+  }
+
+  .product-media {
+    width: 58% !important;
+  }
+
+  #block-related-heading {
+    font: normal normal 600 24px/33px Open Sans;
+    letter-spacing: 0;
+    color: #333333;
+  }
+
+  .block-content {
+    margin-left: 10px;
+  }
+
 }

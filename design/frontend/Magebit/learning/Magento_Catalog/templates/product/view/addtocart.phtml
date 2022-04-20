@@ -21,10 +21,12 @@
                                     "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
                                 }
                             }
-
                         </script>
                     </div>
-                    <div class="magebit-in-stock-container"><b> &#10004; IN STOCK </b><?= $_product->getExtensionAttributes()->getStockItem()->getQty() ?> items available</div>
+                    <div class="magebit-in-stock-container"><b> &#10004; IN
+                            STOCK </b><?= $_product->getExtensionAttributes()->getStockItem()->getQty() ?> items
+                        available
+                    </div>
                 </div>
             <?php endif; ?>
             <div class="actions">

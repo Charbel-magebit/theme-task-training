@@ -8,62 +8,60 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 class EnhancedProductAttributeDisplay implements ArgumentInterface
 {
     // List of product properties we wish to display by default if available
-    public const DEFAULT_ATTRIBUTES = [
+    private const DEFAULT_ATTRIBUTES = [
         'color',
         'dimension',
         'material'
     ];
 
-    public const NUMBER_OF_ATTRIBUTES_TO_DISPLAY = 3;
+    private const NUMBER_OF_ATTRIBUTES_TO_DISPLAY = 3;
+    private const HTML_ALLOWED_ON_FRONTEND = 'is_html_allowed_on_front';
 
-    private $attributesToRender = [];
-    private $productAttributes = [];
     /** @var Product $product */
     private $product;
 
-    public function getAttributesToRender($product): array
+    public function getAttributesToRender(Product $product): array
     {
         $this->product = $product;
-        $this->productAttributes = $product->getAttributes();
-        $this->getDefaultAttributes()->getRemainingAttributes();
-
-        return $this->attributesToRender;
+        return $this->getProductAttributes();
     }
 
-    private function getRemainingAttributes(): void
+    private function getProductAttributes(): array
     {
-        $itemsToStillRender = self::NUMBER_OF_ATTRIBUTES_TO_DISPLAY - count($this->attributesToRender);
+        $attributesToRender = [];
+        $productAttributes = $this->product->getAttributes();
 
-        foreach ($this->productAttributes as $attribute) {
+        //Try to get all default attributes
+        foreach (self::DEFAULT_ATTRIBUTES as $defaultAttribute) {
+            if (
+                isset($productAttributes[$defaultAttribute]) &&
+                !empty($this->product->getAttributeText($productAttributes[$defaultAttribute]->getName()))
+            ) {
+                $attributeName = $productAttributes[$defaultAttribute]->getName();
+                $attributesToRender[$attributeName] = $this->formatAttributeText($this->product->getAttributeText($attributeName));
+                unset($productAttributes[$defaultAttribute]);
+            }
+        }
+
+        //Check if some default attributes could not be loaded and replace them by other attributes
+        $itemsToStillRender = self::NUMBER_OF_ATTRIBUTES_TO_DISPLAY - count($attributesToRender);
+        foreach ($productAttributes as $attribute) {
             if ($itemsToStillRender > 0) {
-                if ($attribute->getData("is_html_allowed_on_front")) {
+                if ($attribute->getData(self::HTML_ALLOWED_ON_FRONTEND)) {
                     $attributeName = $attribute->getName();
-                    $this->attributesToRender[$attributeName] = $this->formatAttributeText($this->product->getAttributeText($attributeName));
+                    $attributesToRender[$attributeName] = $this->formatAttributeText($this->product->getAttributeText($attributeName));
                     $itemsToStillRender -= 1;
                 }
             } else {
                 break;
             }
         }
-    }
 
-    private function getDefaultAttributes(): self
-    {
-        foreach (self::DEFAULT_ATTRIBUTES as $defaultAttribute) {
-            if (
-                isset($this->productAttributes[$defaultAttribute]) &&
-                $this->product->getAttributeText($this->productAttributes[$defaultAttribute]->getName()) !== ''
-            ) {
-                $attributeName = $this->productAttributes[$defaultAttribute]->getName();
-                $this->attributesToRender[$attributeName] = $this->formatAttributeText($this->product->getAttributeText($attributeName));
-                unset($this->productAttributes[$defaultAttribute]);
-            }
-        }
-        return $this;
+        return $attributesToRender;
     }
 
     private function formatAttributeText($attributeText): string
     {
-        return is_array($attributeText) ? implode(",", $attributeText) : $attributeText;
+        return is_array($attributeText) ? implode(',', $attributeText) : $attributeText;
     }
 }

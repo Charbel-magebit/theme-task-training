@@ -2,6 +2,7 @@ define([
     'ko',
     'uiElement'
 ], function (ko, Element) {
+    "use strict";
     return Element.extend({
         defaults: {
             template: 'Magento_Catalog/input-counter',

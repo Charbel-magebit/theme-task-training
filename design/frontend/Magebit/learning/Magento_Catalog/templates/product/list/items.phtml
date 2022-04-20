@@ -161,7 +161,8 @@ switch ($type = $block->getType()) {
      data-limit="<?= $block->escapeHtmlAttr($limit) ?>" data-shuffle="<?= /* @noEscape */
 $shuffle ?>">
     <?php else : ?>
-    <div class="block <?= $block->escapeHtmlAttr($class) ?> magebit-upsell-height" data-mage-init='{"upsellProducts":{}}'
+    <div class="block <?= $block->escapeHtmlAttr($class) ?> magebit-upsell-height"
+         data-mage-init='{"upsellProducts":{}}'
          data-limit="<?= $block->escapeHtmlAttr($limit) ?>" data-shuffle="<?= /* @noEscape */
     $shuffle ?>">
         <?php endif; ?>
@@ -210,9 +211,10 @@ $shuffle ?>">
                                 <?= $block->getImage($_item, $image)->toHtml() ?>
                             </a>
                             <div style="margin: 20px;" class="product details product-item-details">
-                                <strong style="margin-left: 0" class="product name product-item-name"><a class="product-item-link"
-                                                                                  title="<?= $block->escapeHtml($_item->getName()) ?>"
-                                                                                  href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
+                                <strong style="margin-left: 0" class="product name product-item-name"><a
+                                            class="product-item-link"
+                                            title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                            href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
                                         <?= $block->escapeHtml($_item->getName()) ?></a>
                                 </strong>
 

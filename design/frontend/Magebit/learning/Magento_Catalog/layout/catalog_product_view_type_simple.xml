@@ -2,6 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+
         <!-- remove product info details -->
         <referenceBlock name="product.info.details" remove="true"/>
 
@@ -9,8 +10,9 @@
         <move element="product.info.upsell" destination="product.info.main"/>
 
         <!-- Add product attributes block and move it to the right position -->
-        <referenceContainer name="content" >
-            <block class="Magento\Catalog\Block\Product\View" name="magebit.learning.product.attributes" template="Magento_Catalog::product/view/attributes.phtml">
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\View" name="magebit.learning.product.attributes"
+                   template="Magento_Catalog::product/view/attributes.phtml">
                 <arguments>
                     <argument name="enhancedProductAttributeDisplay" xsi:type="object">
                         Magebit\EnhancedProductAttributeDisplay\Block\Product\EnhancedProductAttributeDisplay
@@ -34,9 +36,12 @@
         </referenceBlock>
 
         <!-- Remove add to block -->
-        <referenceBlock name="product.info.addto" remove="true" />
+        <referenceBlock name="product.info.addto" remove="true"/>
 
         <!-- Remove product info overview block-->
-        <referenceBlock name="product.info.overview" remove="true" />
+        <referenceBlock name="product.info.overview" remove="true"/>
+
+        <!-- Remove In stock next to the price -->
+        <referenceContainer name="product.info.type" remove="true" />
     </body>
 </page>

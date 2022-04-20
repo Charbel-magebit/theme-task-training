@@ -1,5 +1,7 @@
-<?php
+<?php declare(strict_types=1);
+
 use Magento\Catalog\Block\Product\View;
+
 /**
  * @var View $block
  */
@@ -9,15 +11,17 @@ $product = $block->getProduct();
 $attributesToRender = $enhancedProductAttributeDisplay->getAttributesToRender($product);
 ?>
 <div class="magebit-attributes-container">
-    <ul>
+    <ul class="magebit-attribute-list">
         <?php foreach ($attributesToRender as $attributeName => $attributeValue): ?>
-            <li>
-                <b><?= $attributeName . ':' ?></b>
-                <?= $attributeValue ?>
+            <li class="magebit-attribute-list-item">
+                <b class="magebit-attribute-bold-title"><?= $attributeName . ':' ?></b>
+                <span class="magebit-attribute-value"><?= $attributeValue ?></span>
             </li>
         <?php endforeach; ?>
     </ul>
-    <p class="magebit-product-short-description"><?= $product->getShortDescription(); ?></p>
+    <div class="magebit-product-short-description">
+        <?= $product->getShortDescription(); ?>
+    </div>
 </div>
 
 
