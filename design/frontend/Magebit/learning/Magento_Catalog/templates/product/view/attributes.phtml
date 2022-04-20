@@ -20,7 +20,7 @@ $attributesToRender = $enhancedProductAttributeDisplay->getAttributesToRender($p
         <?php endforeach; ?>
     </ul>
     <div class="magebit-product-short-description">
-        <?= $block->escapeHtml($product->getShortDescription()); ?>
+        <?= $product->getShortDescription(); ?>
     </div>
 </div>
 
